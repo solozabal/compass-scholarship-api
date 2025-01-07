@@ -16,8 +16,9 @@ public class LessonController {
     private LessonService lessonService;
 
     @GetMapping
-    public List<Lesson> getAllLessons() {
-        return lessonService.getAllLessons();
+    public ResponseEntity<List<Lesson>> getAllLessons() {
+        List<Lesson> lessons = lessonService.getAllLessons();
+        return ResponseEntity.ok(lessons);
     }
 
     @GetMapping("/{id}")
@@ -28,8 +29,9 @@ public class LessonController {
     }
 
     @PostMapping
-    public Lesson createLesson(@RequestBody Lesson lesson) {
-        return lessonService.createLesson(lesson);
+    public ResponseEntity<Lesson> createLesson(@RequestBody Lesson lesson) {
+        Lesson createdLesson = lessonService.createLesson(lesson);
+        return ResponseEntity.status(201).body(createdLesson); // Retorna 201 Created
     }
 
     @PutMapping("/{id}")

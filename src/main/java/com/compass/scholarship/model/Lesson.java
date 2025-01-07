@@ -7,9 +7,6 @@ import java.time.LocalDateTime;
 @Table(name = "lessons")
 public class Lesson {
 
-    public Lesson(long par, String lesson_1, String string) {
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,8 +21,15 @@ public class Lesson {
     @JoinColumn(name = "squad_id", nullable = false)
     private Squad squad;
 
-    // Getters and Setters
+    // Construtor
+    public Lesson(Long id, String title, String description) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.date = LocalDateTime.now(); // Definindo a data como agora por padrão
+    }
 
+    // Getters e Setters
     public Long getId() {
         return id;
     }
